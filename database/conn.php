@@ -38,7 +38,7 @@ function createTables()
     $conn = getConnection();
 
     $tables = [
-        'departments' => 'CREATE TABLE IF NOT EXISTS `employees` (
+        'departments' => 'CREATE TABLE IF NOT EXISTS `departments` (
             `id` INT PRIMARY KEY AUTO_INCREMENT, 
             `name` VARCHAR(50) NOT NULL
         );',
@@ -49,7 +49,7 @@ function createTables()
             `password` VARCHAR(50) NOT NULL, 
             `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
             `department_id` INT NOT NULL, 
-            FOREIGN KEY (`department_id`) REFERENCES `departments`.`id`
+            FOREIGN KEY (`department_id`) REFERENCES `departments`(`id`)
         );'
     ];
 
@@ -70,4 +70,4 @@ function startProject()
 }
 // ##################################################
 
-// startProject();
+startProject();
