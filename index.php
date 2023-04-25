@@ -1,4 +1,10 @@
 <?php require_once 'inc/header.php' ?>
+<?php
+require_once 'employee/Employee.php';
+$emp = new Employee();
+$result = $emp->getAllEmployee();
+
+?>
 <?php require_once 'inc/nav.php' ?>
 <div class="container m-5">
     <div class="row">
@@ -6,6 +12,7 @@
             <h1>Home Page</h1>
             <h4>All Employees in the Company</h4>
             <hr>
+            <?php require_once 'inc/massages.php' ?>
             <table class="table">
                 <thead>
                     <tr>
@@ -19,18 +26,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Ali</td>
-                        <td>Ali@mail.com</td>
-                        <td>123456</td>
-                        <td>Back End</td>
-                        <td>2023</td>
-                        <td>
-                            <a href="" class="btn btn-warning mx-3">Edit</a>
-                            <a href="" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
+                    <?php while ($employee = mysqli_fetch_assoc($result)) : ?>
+                        <tr>
+                            <th scope="row"><?= $employee['employee_id'] ?></th>
+                            <td><?= $employee['employee_name'] ?></td>
+                            <td><?= $employee['email'] ?></td>
+                            <td><?= $employee['password'] ?></td>
+                            <td><?= $employee['department_name'] ?></td>
+                            <td><?= $employee['created_at'] ?></td>
+                            <td>
+                                <a href="<?= URL ?>employee/update_emp.php?id=<?= $employee['employee_id'] ?>" class="btn btn-warning mx-3">Edit</a>
+                                <a href="<?= URL ?>employee/handlers/delete_emp.php?id=<?= $employee['employee_id'] ?>" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endwhile ?>
 
                 </tbody>
             </table>
