@@ -1,4 +1,8 @@
-<?php require_once '../inc/header.php' ?>
+<?php require_once '../inc/header.php';
+require_once ROOT . 'department/Department.php';
+$all_departments = new Department();
+$result = $all_departments->getAllDepartments();
+?>
 <?php require_once '../inc/nav.php' ?>
 <div class="container m-5">
     <div class="row">
@@ -26,8 +30,9 @@
 
                 <select class="form-select mb-3" name="emp_department">
                     <option selected>Choose Department</option>
-                    <option value="1">IT</option>
-                    <option value="2">CS</option>
+                    <?php while ($department = mysqli_fetch_assoc($result)) : ?>
+                        <option value="<?= $department['department_id'] ?>"><?= $department['department_name'] ?></option>
+                    <?php endwhile ?>
                 </select>
 
                 <button type="submit" class="btn btn-success">Add</button>

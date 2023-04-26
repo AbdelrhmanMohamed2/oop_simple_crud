@@ -11,6 +11,9 @@ $data = $emp->getInfo();
 if (!$data) {
     redirect('../index.php');
 }
+require_once ROOT . 'department/Department.php';
+$all_departments = new Department();
+$result = $all_departments->getAllDepartments();
 
 
 ?>
@@ -44,8 +47,9 @@ if (!$data) {
 
 
                 <select class="form-select mb-3" name="emp_department">
-                    <option <?php if ($data[0]['department_id'] === 1) : ?> selected <?php endif ?>value="1">IT</option>
-                    <option <?php if ($data[0]['department_id'] === 2) : ?> selected <?php endif ?> value="2">CS</option>
+                    <?php while ($department = mysqli_fetch_assoc($result)) : ?>
+                        <option value="<?= $department['department_id'] ?>" <?php if ($data[0]['department_id'] ==  $department['department_id']) : ?> selected <?php endif ?>><?= $department['department_name'] ?></option>
+                    <?php endwhile ?>
                 </select>
 
                 <button type="submit" class="btn btn-success">Save</button>

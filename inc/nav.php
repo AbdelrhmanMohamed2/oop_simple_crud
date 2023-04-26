@@ -1,10 +1,3 @@
-<?php
-session_start();
-define('URL', 'http://localhost/phpCourse/oop/L1/oop_simple_crud/');
-define('ROOT', 'C:/xampp/htdocs/phpCourse/oop/L1/oop_simple_crud/');
-
-?>
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= URL ?>">OOP CRUD</a>

@@ -5,11 +5,13 @@
         <div class="col-12">
             <h1>Add New Department</h1>
             <hr>
-            <form class="m-5">
+            <?php require_once '../inc/massages.php' ?>
+
+            <form class="m-5" method="POST" action="handlers/create_dep.php">
 
                 <div class="mb-3">
-                    <label for="emp_name" class="form-label">Department Name</label>
-                    <input type="text" name="emp_name" class="form-control" id="emp_name">
+                    <label for="depart_name" class="form-label">Department Name</label>
+                    <input type="text" name="depart_name" class="form-control" id="depart_name">
                 </div>
 
 
